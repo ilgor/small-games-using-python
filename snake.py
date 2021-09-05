@@ -62,13 +62,12 @@ def move():
     elif snake_y < -screen_y / 2:
         snake_y = screen_y / 2
 
-    snake_head.setx(snake_x + Coor.x)
-    snake_head.sety(snake_y + Coor.y)
+    snake_head.goto(snake_x + Coor.x, snake_y + Coor.y)
     
     if len(bodies) > 0:
-        bodies[-1].setx(snake_x)
-        bodies[-1].sety(snake_y)
-        bodies.insert(0, bodies.pop())
+        tail = bodies.pop()
+        tail.goto(snake_x, snake_y)
+        bodies.insert(0, tail)
 
     
 screen.listen()
